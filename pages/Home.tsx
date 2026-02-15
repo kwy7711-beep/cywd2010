@@ -123,7 +123,7 @@ export const Home: React.FC = () => {
           {/* Main Background Image */}
           <img 
             src="https://cywd2.jjerrii.uk/S/IMG_3117.jpg" 
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            className="absolute inset-0 w-full h-full object-contain pointer-events-none"
             alt="Miniroom Background"
           />
           
