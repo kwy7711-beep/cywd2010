@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, X, AlertTriangle, Eye } from 'lucide-react';
 import { INITIAL_ILCHONPYEONG } from '../constants';
 import { Ilchonpyeong } from '../types';
@@ -13,25 +13,22 @@ export const Home: React.FC = () => {
   const [showSecretLayer, setShowSecretLayer] = useState(false);
   const [shakeAnimation, setShakeAnimation] = useState(false);
 
-  // 미니미 클릭 핸들러 (이스터에그 트리거 - 혐관 버전)
+  // 미니미 클릭 핸들러 (이스터에그 트리거)
   const handleMinimiClick = () => {
     const newCount = pokeCount + 1;
     setPokeCount(newCount);
     setShakeAnimation(true);
 
-    // 클릭 횟수에 따른 대사 변화 (짜증/혐오)
     if (newCount === 1) setSpeechBubble("...?");
     else if (newCount === 2) setSpeechBubble("거슬리게 하지 마.");
     else if (newCount === 3) setSpeechBubble("할 짓 없냐?");
     else if (newCount === 4) setSpeechBubble("그만 좀 찔러. 짜증나게.");
     else if (newCount >= 5) {
-      // 이스터에그 발동
       setShowSecretLayer(true);
       setPokeCount(0);
       setSpeechBubble("야, 신채아.");
     }
 
-    // 애니메이션 리셋
     setTimeout(() => setShakeAnimation(false), 200);
   };
 
@@ -39,7 +36,7 @@ export const Home: React.FC = () => {
     if (!newIlchon.trim()) return;
     const newItem: Ilchonpyeong = {
       id: Date.now(),
-      name: '신채아', // Defaulting to the user's role name
+      name: '신채아', 
       content: newIlchon
     };
     setIlchonList([newItem, ...ilchonList]);
@@ -47,9 +44,9 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <div className="h-full flex flex-col gap-4 overflow-y-auto relative">
+    <div className="h-full flex flex-col gap-4 overflow-y-auto relative pr-1 custom-scrollbar">
       
-      {/* ★ EASTER EGG OVERLAY (ANNOYED VER) ★ */}
+      {/* EASTER EGG OVERLAY */}
       {showSecretLayer && (
         <div className="absolute inset-0 z-50 bg-black bg-opacity-80 flex flex-col items-center justify-center p-6 text-gray-800 animate-in fade-in duration-300">
            <div className="border-2 border-gray-400 bg-gray-200 p-6 max-w-sm w-full relative shadow-2xl rounded-sm">
@@ -66,9 +63,7 @@ export const Home: React.FC = () => {
               </div>
 
               <div className="space-y-4 text-xs font-sans leading-relaxed text-gray-800 text-center">
-                <p className="font-bold text-sm">
-                  "너, 내가 우습냐?"
-                </p>
+                <p className="font-bold text-sm">"너, 내가 우습냐?"</p>
                 <p>
                   남의 홈피에서 염탐이나 하고...<br/>
                   천아개발 사장님이 그렇게 한가한 줄은 몰랐네.
@@ -83,7 +78,7 @@ export const Home: React.FC = () => {
                       <Eye size={10} className="text-gray-500"/>
                       <span className="text-[10px] text-gray-500 font-mono">System Message</span>
                    </div>
-                   <p className="text-gray-700 text-[11px] font-mono">
+                   <p className="text-gray-700 text-[11px] font-mono leading-tight">
                       {"> 설휘영님이 회원님의 접근을 불쾌해합니다."}<br/>
                       {"> 강제 퇴장 당하기 전에 나가시겠습니까?"}
                    </p>
@@ -118,68 +113,65 @@ export const Home: React.FC = () => {
       {/* Miniroom Area */}
       <div className="flex-1 min-h-[300px] flex flex-col">
         <h3 className="text-cyworld-blue text-sm font-bold mb-2">Miniroom</h3>
-        <div className="relative w-full aspect-[3/2] bg-white border border-gray-400 rounded-sm mb-4 overflow-hidden group select-none">
+        
+        {/* 비율을 aspect-[16/7]로 조정하고 배경색을 이미지와 맞춤 */}
+        <div className="relative w-full aspect-[16/7] bg-[#1a1a1b] border border-gray-400 rounded-sm mb-4 overflow-hidden group select-none shadow-inner">
           
-          {/* Main Background Image */}
           <img 
             src="https://cywd2.jjerrii.uk/S/IMG_3117.jpg" 
             className="absolute inset-0 w-full h-full object-contain pointer-events-none"
             alt="Miniroom Background"
           />
           
-          {/* Avatar (Hwi-young) - Clickable for Easter Egg */}
+          {/* Avatar (Hwi-young) */}
           <div 
             onClick={handleMinimiClick}
-            className={`absolute bottom-5 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10 cursor-pointer transition-transform ${shakeAnimation ? 'translate-x-[-48%]' : ''}`}
+            className={`absolute bottom-3 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10 cursor-pointer transition-transform ${shakeAnimation ? 'translate-x-[-52%]' : '-translate-x-1/2'}`}
           >
-             {/* Speech Bubble */}
              <div className={`bg-white text-black text-[10px] px-2 py-0.5 border border-black mb-1 opacity-90 shadow-sm whitespace-nowrap ${pokeCount > 0 ? 'text-red-800 font-bold border-red-800' : ''}`}>
                {speechBubble}
              </div>
              
-             {/* Character Image */}
              <img 
                src="https://cywd2.jjerrii.uk/S/IMG_3118.PNG" 
-               className={`h-24 w-auto object-contain drop-shadow-xl mix-blend-multiply transition-all hover:scale-105 active:scale-95`}
+               className="h-20 md:h-24 w-auto object-contain drop-shadow-[0_5px_5px_rgba(0,0,0,0.5)] transition-all hover:scale-105 active:scale-95"
                alt="Minimi" 
              />
-             <div className="text-xs font-bold mt-1 text-white bg-black bg-opacity-60 px-2 py-0.5 rounded-sm backdrop-blur-[1px]">설휘영</div>
+             <div className="text-[10px] font-bold mt-1 text-white bg-black bg-opacity-60 px-2 py-0.5 rounded-sm backdrop-blur-[1px]">설휘영</div>
           </div>
         </div>
 
         {/* Ilchonpyeong Section */}
-        <div className="bg-gray-100 p-2 rounded-sm border border-gray-300">
+        <div className="bg-gray-100 p-2 rounded-sm border border-gray-300 mb-2">
            <div className="flex items-center text-cyworld-blue font-bold text-xs mb-2">
              <span className="mr-2">일촌평</span>
              <div className="flex-1 h-[1px] bg-gray-300"></div>
            </div>
            
-           {/* Input */}
            <div className="flex mb-3 gap-1">
-             <span className="text-xs font-bold text-gray-600 flex items-center shrink-0">일촌평 : </span>
+             <span className="text-[11px] font-bold text-gray-600 flex items-center shrink-0">일촌평 : </span>
              <input 
                type="text" 
                value={newIlchon}
                onChange={(e) => setNewIlchon(e.target.value)}
                onKeyDown={(e) => e.key === 'Enter' && handleAddIlchon()}
-               className="flex-1 border border-gray-300 text-xs px-2 py-1 focus:outline-none focus:border-cyworld-blue"
+               className="flex-1 border border-gray-300 text-[11px] px-2 py-1 focus:outline-none focus:border-cyworld-blue"
                placeholder="일촌평을 입력하세요..."
              />
              <button 
                onClick={handleAddIlchon}
-               className="bg-white border border-gray-300 text-xs px-2 text-gray-600 hover:bg-gray-50"
+               className="bg-white border border-gray-300 text-[11px] px-2 text-gray-600 hover:bg-gray-50 active:bg-gray-100"
              >
                확인
              </button>
            </div>
 
-           {/* List */}
-           <div className="space-y-1 max-h-[120px] overflow-y-auto pr-1">
+           <div className="space-y-1 max-h-[100px] overflow-y-auto pr-1">
              {ilchonList.map((item) => (
-               <div key={item.id} className="text-xs flex items-start gap-1">
+               <div key={item.id} className="text-[11px] flex items-start gap-1">
                  <span className="font-bold text-cyworld-blue cursor-pointer hover:underline shrink-0">{item.name}</span>
                  <span className="text-gray-600 break-all flex-1">{item.content}</span>
-                 <span className="text-gray-400 text-[10px] shrink-0">(2010.05.20)</span>
+                 <span className="text-gray-400 text-[9px] shrink-0 pt-0.5">(2010.05.20)</span>
                </div>
              ))}
            </div>
