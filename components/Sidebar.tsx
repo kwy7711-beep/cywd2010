@@ -3,16 +3,16 @@ import { Heart, User } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   return (
-    <div className="flex flex-col h-full w-full">
+    <div className="flex flex-col w-full">
       {/* Visitor Counter */}
       <div className="text-center mb-2 text-[10px] font-sans text-gray-600">
         TODAY <span className="text-red-500 font-bold">12,839</span> | TOTAL <span className="font-bold">8,931,203</span>
       </div>
 
-      {/* Card Container */}
-      <div className="border border-gray-300 bg-white p-3 h-full flex flex-col items-center rounded-lg shadow-sm">
+      {/* Card Container: h-full을 제거하고 h-fit을 사용하여 내용만큼만 배경이 생기게 합니다 */}
+      <div className="border border-gray-300 bg-white p-3 h-fit flex flex-col items-center rounded-lg shadow-sm">
         
-        {/* Profile Image - Further reduced to aspect-[4/3] (landscape-ish) to save vertical space */}
+        {/* Profile Image */}
         <div className="w-full aspect-[4/3] bg-gray-100 mb-3 border border-gray-200 p-1">
           <img 
             src="https://cywd2.jjerrii.uk/S/1771055633680_01.png" 
@@ -21,8 +21,8 @@ export const Sidebar: React.FC = () => {
           />
         </div>
 
-        {/* Introduction */}
-        <div className="text-center w-full mb-4 flex-1 overflow-y-auto scrollbar-hide">
+        {/* Introduction: flex-1을 제거하여 여백을 강제로 만들지 않도록 합니다 */}
+        <div className="text-center w-full mb-4">
           <p className="text-xs text-blue-800 mb-2 font-bold break-words px-2 border-b border-dashed border-gray-300 pb-2">
             건드리면 죽여.<br/>법보다 돈이 위니까.
           </p>
@@ -36,8 +36,8 @@ export const Sidebar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mood Status */}
-        <div className="w-full mt-auto pt-2 border-t border-dotted border-gray-200">
+        {/* Mood Status: mt-auto를 제거하여 위 내용 바로 다음에 붙게 합니다 */}
+        <div className="w-full pt-2 border-t border-dotted border-gray-200">
            <div className="mb-2">
             <span className="text-xs font-bold text-cyworld-blue">Today is..</span>
             <div className="flex items-center mt-1 border border-gray-200 rounded p-1">
