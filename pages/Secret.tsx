@@ -58,7 +58,7 @@ export const Secret: React.FC<SecretProps> = ({ onOpenGallery }) => {
              </ul>
              
              <div className="mt-6 text-[10px] text-green-800 border-t border-green-900 pt-2 flex justify-between">
-               <span>> _ACCESS_LEVEL: ADMIN</span>
+               <span>{"> _ACCESS_LEVEL: ADMIN"}</span>
                <span className="animate-pulse">_CURSOR_BLINKING...</span>
              </div>
           </div>
