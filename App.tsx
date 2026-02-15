@@ -75,13 +75,13 @@ export default function App() {
   return (
     <div className="min-h-screen p-4 md:p-8 flex justify-center items-center font-pixel">
       {/* Outer Gray Background Container */}
-      <div className="relative bg-cyworld-bg p-1 rounded-xl shadow-2xl max-w-[1024px] w-full">
+      <div className="relative bg-cyworld-bg p-2 rounded-xl shadow-2xl max-w-[1024px] w-full">
         
         {/* Dotted Inner Line */}
         <div className="border-2 border-dashed border-white rounded-lg p-2 md:p-5 h-full bg-cyworld-bg">
           
           {/* Main White Content Area with "Book Binding" effect */}
-          <div className="relative bg-cyworld-inner rounded-xl p-4 md:p-6 shadow-lg h-[650px] md:h-[600px] flex flex-col">
+          <div className="relative bg-cyworld-inner rounded-xl p-4 md:p-6 shadow-lg min-h-[650px] flex flex-col">
             
             {/* Header / Title Bar */}
             <div className="flex justify-between items-center mb-4">
