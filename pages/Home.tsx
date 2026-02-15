@@ -114,12 +114,12 @@ export const Home: React.FC = () => {
       <div className="flex-1 min-h-[300px] flex flex-col">
         <h3 className="text-cyworld-blue text-sm font-bold mb-2">Miniroom</h3>
         
-        {/* 비율을 aspect-[16/7]로 조정하고 배경색을 이미지와 맞춤 */}
-        <div className="relative w-full aspect-[16/7] bg-[#1a1a1b] border border-gray-400 rounded-sm mb-4 overflow-hidden group select-none shadow-inner">
+        {/* Mobile: Aspect 4/3, Desktop: Aspect 16/7 */}
+        <div className="relative w-full aspect-[4/3] md:aspect-[16/7] bg-[#1a1a1b] border border-gray-400 rounded-sm mb-4 overflow-hidden group select-none shadow-inner">
           
           <img 
             src="https://cywd2.jjerrii.uk/S/IMG_3117.jpg" 
-            className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+            className="absolute inset-0 w-full h-full object-cover md:object-contain pointer-events-none"
             alt="Miniroom Background"
           />
           
@@ -148,22 +148,24 @@ export const Home: React.FC = () => {
              <div className="flex-1 h-[1px] bg-gray-300"></div>
            </div>
            
-           <div className="flex mb-3 gap-1">
+           <div className="flex mb-3 gap-1 flex-wrap">
              <span className="text-[11px] font-bold text-gray-600 flex items-center shrink-0">일촌평 : </span>
-             <input 
-               type="text" 
-               value={newIlchon}
-               onChange={(e) => setNewIlchon(e.target.value)}
-               onKeyDown={(e) => e.key === 'Enter' && handleAddIlchon()}
-               className="flex-1 border border-gray-300 text-[11px] px-2 py-1 focus:outline-none focus:border-cyworld-blue"
-               placeholder="일촌평을 입력하세요..."
-             />
-             <button 
-               onClick={handleAddIlchon}
-               className="bg-white border border-gray-300 text-[11px] px-2 text-gray-600 hover:bg-gray-50 active:bg-gray-100"
-             >
-               확인
-             </button>
+             <div className="flex flex-1 gap-1">
+                <input 
+                  type="text" 
+                  value={newIlchon}
+                  onChange={(e) => setNewIlchon(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleAddIlchon()}
+                  className="flex-1 border border-gray-300 text-[11px] px-2 py-1 focus:outline-none focus:border-cyworld-blue min-w-[100px]"
+                  placeholder="일촌평을 입력하세요..."
+                />
+                <button 
+                  onClick={handleAddIlchon}
+                  className="bg-white border border-gray-300 text-[11px] px-2 text-gray-600 hover:bg-gray-50 active:bg-gray-100 whitespace-nowrap"
+                >
+                  확인
+                </button>
+             </div>
            </div>
 
            <div className="space-y-1 max-h-[100px] overflow-y-auto pr-1">
@@ -171,7 +173,7 @@ export const Home: React.FC = () => {
                <div key={item.id} className="text-[11px] flex items-start gap-1">
                  <span className="font-bold text-cyworld-blue cursor-pointer hover:underline shrink-0">{item.name}</span>
                  <span className="text-gray-600 break-all flex-1">{item.content}</span>
-                 <span className="text-gray-400 text-[9px] shrink-0 pt-0.5">(2010.05.20)</span>
+                 <span className="text-gray-400 text-[9px] shrink-0 pt-0.5 hidden sm:inline-block">(2010.05.20)</span>
                </div>
              ))}
            </div>
