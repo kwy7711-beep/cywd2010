@@ -84,8 +84,8 @@ export const Home: React.FC = () => {
                       <span className="text-[10px] text-gray-500 font-mono">System Message</span>
                    </div>
                    <p className="text-gray-700 text-[11px] font-mono">
-                     > 설휘영님이 회원님의 접근을 불쾌해합니다.<br/>
-                     > 강제 퇴장 당하기 전에 나가시겠습니까?
+                      {"> 설휘영님이 회원님의 접근을 불쾌해합니다."}<br/>
+                      {"> 강제 퇴장 당하기 전에 나가시겠습니까?"}
                    </p>
                 </div>
               </div>
