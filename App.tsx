@@ -81,7 +81,7 @@ export default function App() {
         <div className="border-2 border-dashed border-white rounded-lg p-2 md:p-5 h-full bg-cyworld-bg">
           
           {/* Main White Content Area with "Book Binding" effect */}
-          <div className="relative bg-cyworld-inner rounded-xl p-4 md:p-6 shadow-lg min-h-[650px] flex flex-col">
+          <div className="relative bg-cyworld-inner rounded-xl p-4 md:p-6 shadow-lg min-h-[600px] h-auto flex flex-col">
             
             {/* Header / Title Bar */}
             <div className="flex justify-between items-center mb-4">
